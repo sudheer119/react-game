@@ -4,17 +4,6 @@ import { useDrop } from "react-dnd";
 import Player from "./components/Player";
 import  {sentence} from "./check.json";
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
-import { useParams } from "react-router-dom";
-
-import {
-  SET_ANSWERS,
-  SET_CURRENT_QUESTION,
-  SET_CURRENT_ANSWER,
-  SET_ERROR,
-  SET_SHOW_RESULTS,
-  RESET_QUIZ,
-} from './reducers/Const';
-import quizReducer from './reducers/QuizReducer';
 
 function Make(props){
     var opr ="";
@@ -90,7 +79,7 @@ function Make(props){
           <Stack width="300px">
             <Heading fontSize="3xl" color="yellow.800" textAlign="center">
 
-              <p>ya</p>
+              <p>words</p>
             
             </Heading>
             <List
@@ -118,7 +107,7 @@ function Make(props){
           </Stack>
           <Stack width="300px">
             <Heading fontSize="3xl" color="teal.800" textAlign="center">
-              TEAM
+              Form a paragraph
             </Heading>
             <List
               bgGradient={
