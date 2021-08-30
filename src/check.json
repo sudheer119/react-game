@@ -1,0 +1,47 @@
+{
+    "sentence":[
+        {
+            "correct":"I am a cat",
+            "jumble":"cat a am i"
+            
+        },
+        {
+            "correct":"I am a dog",
+            "jumble":"dog a am i"
+        },
+         {
+            "correct":"monkey is good",
+            "jumble":"is good monkey"
+        },
+
+         {
+            "correct":"cat is small",
+            "jumble":"cat samll is"
+        },
+         {
+            "correct":"I am a monkey",
+            "jumble":"a am i monlkey"
+        },
+         {
+            "correct":"monkey is a animal",
+            "jumble":"a animal  is monkey"
+        },
+         {
+            "correct":"dog is a cat",
+            "jumble":"a cat is dog"
+        },
+
+         {
+            "correct":"manokey are good",
+            "jumble":"is cat a dog"
+        },
+
+         {
+            "correct":"good dogs are bad",
+            "jumble":"are bad dogs are good"
+        }
+         
+    ]
+    
+
+}
