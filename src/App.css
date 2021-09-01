@@ -27,12 +27,37 @@
 .App-link {
   color: #61dafb;
 }
-
+.centered {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  margin-top: -50px;
+  margin-left: -100px;
+  border: 1px solid;
+  padding: 10px;
+  box-shadow: 5px 10px;
+  transition: transform 0.2s;
+}
+.centered:hover {
+  transform: scale(
+    1.5
+  ); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+}
+.cent {
+  position: fixed;
+  top: 25%;
+  left: 45%;
+  margin-top: -50px;
+  margin-left: -100px;
+  border: 1px solid;
+  padding: 10px;
+  transition: transform 0.2s;
+}
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
   }
   to {
-    transform: rotate(360deg);
+    transform: rotate(60deg);
   }
 }

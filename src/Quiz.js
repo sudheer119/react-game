@@ -6,7 +6,6 @@ import  {sentence} from "./check.json";
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 
 function Make(props){
-    var opr ="";
     
      var jumbler = sentence.map(function(item) {
       return {
@@ -18,34 +17,51 @@ function Make(props){
         key: item.correct,
       };  
     }); 
+
   var a={key :props.match.params.id};
-  var op2="/TakeQuiz/"+(parseInt(a.key)+1).toString();
-  
-    const jumblelist = jumbler[a.key].key.split(" ");
-    const correctlist = jumbler[a.key].key.split(" ");
+      var opr ="/TakeQuiz/"+a.key;
+const [op2, setop2] = useState("/TakeQuiz/"+a.key);
+    const jumblelist = jumbler[parseInt(a.key)-1].key.split(" ");
+    const correctlist = correcter[parseInt(a.key)-1].key.split(" ");
     const [players, setPlayer] = useState([]);
     const [team, setTeam] = useState([]);
-
     if(players.length==0 && team.length==0){
     for(var i=0;i<jumblelist.length;i++){
       players.push({name: jumblelist[i]});
     }
   }
-   const isnext = true;
-   if (correctlist.length==team.length){
-     var temp234=0;
-     for(var i=0;i<correctlist.length;i++){
-       if (correctlist[i]!=team[i].key){
-         temp234=1;
-         break;
-       }
-       if (temp234==0){
-         isnext=false;
-       }
-     }
-   }
+              console.log(jumblelist.length);
 
-   console.log(isnext,temp234,opr,op2);
+   function checker(e) {
+     var c=0;
+     if (team.length==correctlist.length){
+       for(var i=0;i<team.length;i++){
+         console.log(team[i].name,correctlist[i]);
+         if (team[i].name!=correctlist[i]){
+           c=1;
+           break;
+         }
+       }
+       
+     }
+     if (c==0){
+       
+        setop2("/TakeQuiz/"+(parseInt(a.key)+1).toString());
+    
+     }
+  }
+  function emptylist(e){
+    players.length=0;
+      team.length=0;
+  }
+  function changer(){
+    if (jumblelist.length%2==0){
+      return (((jumblelist.length+1)*10)+10).toString();
+    }
+    else {
+      return ((jumblelist.length*10)+10).toString();
+    }
+  }
     const [{ isOver }, addToTeamRef] = useDrop({
       accept: "player",
       collect: (monitor) => ({ isOver: !!monitor.isOver() }),
@@ -90,7 +106,7 @@ function Make(props){
               }
               ref={removeFromTeamRef}
               p="4"
-              minH="70vh"
+              minH={changer}
               boxShadow="xl"
               borderRadius="md"
             >
@@ -116,10 +132,11 @@ function Make(props){
                   : "linear(to-b, teal.100, teal.200)"
               }
               ref={addToTeamRef}
-              minH="70vh"
+              p="4"
+              minH={changer}
               boxShadow="xl"
               borderRadius="md"
-              p="4"
+              
             >
               {team.map((p, i) => (
                 <Player
@@ -133,17 +150,14 @@ function Make(props){
             </List>
           </Stack>
         </Flex>
-         <Router>
-           {
-             isnext 
-               ? <Link to = {opr+op2} >submit</Link>
-               : <Link to = {opr} >submit</Link>
-           }
-       </Router>
+        <Link to={opr} onClick={checker} >check</Link><br></br>
+       <Link to={op2} onClick={emptylist}>submit</Link>
+       
+       
 
       </Container>
     );
   }
   
   export default Make;
-  
+   
