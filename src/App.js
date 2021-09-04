@@ -6,18 +6,32 @@ import * as data from "./check.json";
 import Make from './Quiz.js';
 import "./App.css";
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
+import Start from "./Start.js";
 function App() {
   
   return (
    <>
-    <Router>
+    {/* <Router>
         <Link to="/TakeQuiz/1" exact>Quiz</Link>
     <Switch>
+    <Route path='/TakeQuiz/:id' component={Make}></Route>
+     </Switch>
+     </Router> */}
+     <Router>
+    <Switch>
+      <Route path="/" component={Home} exact></Route>
+    <Route path='/Start' component={Start}></Route>
     <Route path='/TakeQuiz/:id' component={Make}></Route>
      </Switch>
      </Router>
      </>
   );
+  function Home()
+  {
+    return(
+       <Link to="/Start" exact>Quiz</Link>
+    )
+  }
 }
 
 export default App;
