@@ -126,3 +126,62 @@ button {
   font-weight: 600;
   background: #fff;
 }
+.ex1 {
+  background-color: lightblue;
+  width: 110px;
+  height: 110px;
+  overflow: scroll;
+}
+.center {
+  width: 400px;
+  height: 400px;
+  position: fixed;
+  top: 20%;
+  left: 35%;
+  margin-top: -50px;
+  margin-left: -10px;
+  border: 1px solid;
+  padding: 10px;
+  overflow: scroll;
+}
+.ce {
+  position: fixed;
+  top: 80%;
+  left: 55%;
+  margin-top: -50px;
+  margin-left: -100px;
+  border: 1px solid;
+  padding: 10px;
+  box-shadow: 5px 10px;
+  transition: transform 0.2s;
+}
+.c {
+  position: fixed;
+  top: 10%;
+  left: 50%;
+  margin-top: -50px;
+  margin-left: -100px;
+  border: 1px solid;
+  padding: 10px;
+}
+.ce:hover {
+  transform: scale(
+    1.5
+  ); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+}
+.tp {
+  position: fixed;
+  top: 90%;
+  left: 55%;
+  margin-top: -50px;
+  margin-left: -100px;
+  border: 1px solid;
+  padding: 10px;
+  box-shadow: 5px 10px;
+  transition: transform 0.2s;
+}
+.tp:hover {
+  transform: scale(
+    1.5
+  ); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+}

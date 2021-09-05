@@ -3,35 +3,30 @@
         {
             "id":1,
             "correct":"I am a cat",
-            "jumble":"cat a am I",
-            "img":"https://ichef.bbci.co.uk/news/976/cpsprodpb/12A9B/production/_111434467_gettyimages-1143489763.jpg"
+            "jumble":"cat a am I"
             
         },
         {
             "id":2,
             "correct":"I am a dog",
-            "jumble":"dog a am I",
-            "img":"https://s3.amazonaws.com/cdn-origin-etr.akc.org/wp-content/uploads/2019/12/03202400/Yellow-Labrador-Retriever.jpg"
+            "jumble":"dog a am I"
         },
 
          {
              "id":3,
             "correct":"monkey is good",
-            "jumble":"is good monkey",
-            "img":"https://images.indianexpress.com/2018/12/monkey-1.jpg"
+            "jumble":"is good monkey"
         },
 
          {
              "id":4,
             "correct":"cat is small",
-            "jumble":"cat small is",
-            "img":"https://ichef.bbci.co.uk/news/976/cpsprodpb/12A9B/production/_111434467_gettyimages-1143489763.jpg"
+            "jumble":"cat small is"
         },
         {
             "id" :5,
             "correct" :"end",
-            "jumble" :"end",
-            "img" :"end.jpg"
+            "jumble" :"end"
 
         }
          

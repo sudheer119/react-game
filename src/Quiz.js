@@ -25,11 +25,7 @@ function Make(props){
         key: item.correct,
       };  
     }); 
-    var imaging = sentence.map(function(item) {
-      return {
-        key: item.img,
-      };  
-    }); 
+   
 
 //
   // Incerementing the id and assigning to the url to move to next questopn
@@ -154,18 +150,20 @@ const [op2, setop2] = useState("/TakeQuiz/"+a.key);
     //
     if (parseInt(a.key)==jumbler.length){
         return (
-        <div>
+          <>
+        <div className="center">
             <h1>The End</h1>
             <p>Total marks : {Tmarks} </p>
             <p>correct answers : {cmark} </p>
             <p>wrong answers : {nega} </p>
         </div>
+        <Link to="/">GO HOME</Link>
+        </>
     )
       }
       else{
     return (
       <Container maxW="800px">
-        <img src={imaging[a.key-1].key}/>
         <Flex justify="space-between" height="90vh" align="center">
           <Stack width="300px">
             <Heading fontSize="3xl" color="yellow.800" textAlign="center">
@@ -225,8 +223,8 @@ const [op2, setop2] = useState("/TakeQuiz/"+a.key);
             </List>
           </Stack>
         </Flex>
-        <Link to={opr} onClick={checker} >check</Link><br></br>
-       <Link to={op2} onClick={emptylist}>submit</Link><br></br>
+        <Link to={opr} onClick={checker} className="ce">check</Link><br></br>
+       <Link to={op2} onClick={emptylist} className="tp">submit</Link><br></br>
        {/* <Link to="/END">End Test</Link> */}
         <div class="popup" id="popup-1">
   <div class="overlay"></div>
@@ -240,7 +238,7 @@ const [op2, setop2] = useState("/TakeQuiz/"+a.key);
 
       </Container>
     );
-              }
+    }
   }
   
   export default Make;

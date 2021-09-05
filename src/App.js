@@ -29,7 +29,7 @@ function App() {
   function Home()
   {
     return(
-       <Link to="/Start" exact>Quiz</Link>
+       <Link to="/Start" exact className="centered">Learn Sentence formation</Link>
     )
   }
 }
