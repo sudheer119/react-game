@@ -4,9 +4,17 @@ import { useDrop } from "react-dnd";
 import Player from "./components/Player";
 import  {sentence} from "./check.json";
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
+import "./App.css";
 
 function Make(props){
-    
+    //Getting data from json fiile
+      var [woright,setworight]=useState();
+      var [showM,setshowM]=useState();
+      let [Tmarks,setTmarks]=useState(0);
+      let [cmark,setcmark]=useState(0);
+      let [nega,setnega]=useState(0);
+
+                let [k,setk]=useState(-1);
      var jumbler = sentence.map(function(item) {
       return {
         key: item.jumble,
@@ -17,26 +25,52 @@ function Make(props){
         key: item.correct,
       };  
     }); 
+    var imaging = sentence.map(function(item) {
+      return {
+        key: item.img,
+      };  
+    }); 
+
+//
+  // Incerementing the id and assigning to the url to move to next questopn
 
   var a={key :props.match.params.id};
       var opr ="/TakeQuiz/"+a.key;
 const [op2, setop2] = useState("/TakeQuiz/"+a.key);
+//
+
+//Splitting the given sentence into words and assignning to a variablelist
+
     const jumblelist = jumbler[parseInt(a.key)-1].key.split(" ");
     const correctlist = correcter[parseInt(a.key)-1].key.split(" ");
+//
+
+//Creating a use state wwhich help dynamically render the content onto the screen
     const [players, setPlayer] = useState([]);
     const [team, setTeam] = useState([]);
+
+
+//
+
+  //If the players tab is empty it will push the data into the players stack 
     if(players.length==0 && team.length==0){
     for(var i=0;i<jumblelist.length;i++){
       players.push({name: jumblelist[i]});
     }
   }
-              console.log(jumblelist.length);
+              
+//
+
+
+  // It is uded to check weather the use form a coreect sentence or not
 
    function checker(e) {
-     var c=0;
+     setop2(opr);
+     setworight("");
+     var c=0,b=0;
      if (team.length==correctlist.length){
+       b=1;
        for(var i=0;i<team.length;i++){
-         console.log(team[i].name,correctlist[i]);
          if (team[i].name!=correctlist[i]){
            c=1;
            break;
@@ -44,16 +78,43 @@ const [op2, setop2] = useState("/TakeQuiz/"+a.key);
        }
        
      }
-     if (c==0){
-       
-        setop2("/TakeQuiz/"+(parseInt(a.key)+1).toString());
-    
-     }
+     
+             
+    if (b==1 && c==0){
+      setworight("CORRECT");
+      setshowM("+10 marks");
+      if (k!=a.key){
+        setTmarks(Tmarks+10);
+        setcmark(cmark+1);
+        setk(a.key);
+      }
+      setop2("/TakeQuiz/"+(parseInt(a.key)+1).toString());
+      
+    }
+    else {
+      setworight("INCORRECT");
+      setshowM("-5 marks");
+      setTmarks(Tmarks-5);
+      setnega(nega+1);
+    }
+    console.log(Tmarks,cmark,nega);
+
+      document.getElementById("popup-1").classList.toggle("active");
   }
+
+
+//
+// It is used to make  both stack empty to reolad the new question after submit
+
   function emptylist(e){
     players.length=0;
       team.length=0;
   }
+
+
+//
+
+// It is used to change the stack contianer style based onn the words giben in json
   function changer(){
     if (jumblelist.length%2==0){
       return (((jumblelist.length+1)*10)+10).toString();
@@ -62,6 +123,12 @@ const [op2, setop2] = useState("/TakeQuiz/"+a.key);
       return ((jumblelist.length*10)+10).toString();
     }
   }
+
+
+  //
+
+
+  //It is uesd in drag and drop functionality
     const [{ isOver }, addToTeamRef] = useDrop({
       accept: "player",
       collect: (monitor) => ({ isOver: !!monitor.isOver() }),
@@ -82,15 +149,23 @@ const [op2, setop2] = useState("/TakeQuiz/"+a.key);
       setTeam((prev) => prev.filter((_, i) => item.index !== i));
       setPlayer((prev) => [...prev, item]);
     };
+
+
+    //
+    if (parseInt(a.key)==jumbler.length){
+        return (
+        <div>
+            <h1>The End</h1>
+            <p>Total marks : {Tmarks} </p>
+            <p>correct answers : {cmark} </p>
+            <p>wrong answers : {nega} </p>
+        </div>
+    )
+      }
+      else{
     return (
       <Container maxW="800px">
-        <Heading p="2" align="center" color="GrayText">
-          {props.match.params.id}
-        </Heading>
-        <Heading p="2" align="center" color="GrayText">
-          React Drag and Drop
-        </Heading>
-  
+        <img src={imaging[a.key-1].key}/>
         <Flex justify="space-between" height="90vh" align="center">
           <Stack width="300px">
             <Heading fontSize="3xl" color="yellow.800" textAlign="center">
@@ -151,12 +226,21 @@ const [op2, setop2] = useState("/TakeQuiz/"+a.key);
           </Stack>
         </Flex>
         <Link to={opr} onClick={checker} >check</Link><br></br>
-       <Link to={op2} onClick={emptylist}>submit</Link>
-       
-       
+       <Link to={op2} onClick={emptylist}>submit</Link><br></br>
+       {/* <Link to="/END">End Test</Link> */}
+        <div class="popup" id="popup-1">
+  <div class="overlay"></div>
+  <div class="content">
+    <div class="close-btn" onClick={checker}>×</div>
+    <h1>{woright}</h1>
+    <p>{showM}</p>
+  </div>
+</div>
+
 
       </Container>
     );
+              }
   }
   
   export default Make;
